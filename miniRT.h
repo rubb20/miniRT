@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/01 15:11:51 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:03:39 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,26 @@
 // ### LIBS ###
 
 //open.
-# include "fcntl.h"
+# include <fcntl.h>
 //close, read, write.
-# include "unistd.h"
+# include <unistd.h>
 //printf, perror.
-# include "stdio.h"
+# include <stdio.h>
 //malloc, free, exit.
-# include "stdlib.h"
+# include <stdlib.h>
 //strerror.
-# include "string.h"
+# include <string.h>
 //math functions.
-# include "math.h"
+# include <math.h>
 //getttimeofday.
 # include <sys/time.h>
 //minilibX.
 # include "minilibx-linux/mlx.h"
 # include <X11/Xlib.h>
+// booleans
+# include <stdbool.h>
+// libft
+# include "libft/libft.h"
 
 // ### STRUCTS ###
 /**
@@ -81,9 +85,9 @@ typedef enum e_id
 
 typedef struct s_list
 {
-	t_id	id;
-	void	*obj;
-	t_list	*next;
+	t_id			id;
+	void			*obj;
+	struct s_list	*next;
 }	t_list;
 
 typedef struct s_sphere
@@ -116,5 +120,13 @@ typedef struct s_miniRT
 	t_light			light;
 	t_list			*scene;
 }	t_miniRT;
+
+// ### FUNCTIONS ###
+//     lists utils
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+t_list	*ft_lstlast(t_list *lst);
+t_list	*ft_lstnew(t_id id, void *obj);
 
 #endif
