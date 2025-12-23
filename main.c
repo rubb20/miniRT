@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2025/12/23 14:03:19 by isastre-         ###   ########.fr       */
+/*   Updated: 2025/12/23 14:03:27 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2 || !file_has_rt_extension(argv[1]))
 		error_exit(NULL, WRONG_NUMBER_ARGS);
+	parse(&rt, argv[1]);
 	return (EXIT_SUCCESS);
 }
 

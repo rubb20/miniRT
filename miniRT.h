@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 14:03:56 by isastre-         ###   ########.fr       */
+/*   Updated: 2025/12/23 14:04:12 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,16 @@
 # include "libft/libft.h"
 
 // ### DEFINES ###
+//     ELEMENT TYPES
+# define AMBIENT_LIGHT "A"
+# define CAMERA "C"
+# define LIGHT "L"
+# define SPHERE "sp"
+# define PLANE "pl"
+# define CYLINDER "cy"
 // 	   MSG ERRORS
 # define WRONG_NUMBER_ARGS "miniRT only accepts a .rt scene as input"
+# define OPEN_ERROR "Error while opening the file"
 //     CONSTANTS
 # define RTFILE_EXT ".rt"
 # define RTFILE_EXT_LEN 3
@@ -130,6 +138,9 @@ typedef struct s_miniRT
 
 // ### FUNCTIONS ###
 void	error_exit(t_miniRT *rt, char *msg);
+
+//     parse
+void	parse(t_miniRT *rt, char *filename);
 
 //     lists utils
 void	ft_lstadd_back(t_list **lst, t_list *new);

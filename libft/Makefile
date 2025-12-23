@@ -35,6 +35,7 @@ CHAR_OBJS = $(CHAR_SRCS:.c=.o)
 STRING_FOLDER = string/
 STRING_SRCS = \
 			ft_equals.c \
+			ft_is_empty.c \
 			ft_joinstrs.c \
 			ft_split.c \
 			ft_str_array_len.c \
