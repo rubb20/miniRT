@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 14:03:56 by isastre-         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:00:32 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,17 @@ typedef struct s_miniRT
 }	t_miniRT;
 
 // ### FUNCTIONS ###
-void	error_exit(t_miniRT *rt, char *msg);
+void		error_exit(t_miniRT *rt, char *msg);
+
+//     structs
+t_color		*create_color(char *input);
+t_3dvector	*create_3dvector(char *input);
 
 //     lists utils
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(t_id id, void *obj);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
+t_list		*ft_lstlast(t_list *lst);
+t_list		*ft_lstnew(t_id id, void *obj);
 
 #endif
