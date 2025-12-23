@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 14:04:12 by isastre-         ###   ########.fr       */
+/*   Updated: 2025/12/23 21:30:46 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,11 @@ typedef struct s_miniRT
 // ### FUNCTIONS ###
 void	error_exit(t_miniRT *rt, char *msg);
 
+//     structs
+int	atoi_err(char *str, bool *err, int min, int max);
+
+t_color		*create_color(char *input);
+t_3dvector	*create_3dvector(char *input);
 //     parse
 void	parse(t_miniRT *rt, char *filename);
 

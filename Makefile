@@ -6,6 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -g3
 SRC	= 	\
 		main.c \
 		parse/parse.c \
+		utils/structs/parse_numbers.c \
 		utils/lists/ft_lstadd_back.c \
 		utils/lists/ft_lstclear.c \
 		utils/lists/ft_lstdelone.c \
