@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/01 18:03:39 by isastre-         ###   ########.fr       */
+/*   Updated: 2025/12/23 14:03:56 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 # include <stdbool.h>
 // libft
 # include "libft/libft.h"
+
+// ### DEFINES ###
+// 	   MSG ERRORS
+# define WRONG_NUMBER_ARGS "miniRT only accepts a .rt scene as input"
+//     CONSTANTS
+# define RTFILE_EXT ".rt"
+# define RTFILE_EXT_LEN 3
 
 // ### STRUCTS ###
 /**
@@ -122,6 +129,8 @@ typedef struct s_miniRT
 }	t_miniRT;
 
 // ### FUNCTIONS ###
+void	error_exit(t_miniRT *rt, char *msg);
+
 //     lists utils
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
