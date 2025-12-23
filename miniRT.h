@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 16:25:29 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:52:16 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,11 +132,13 @@ typedef struct s_miniRT
 	t_list			*scene;
 }	t_miniRT;
 
-typedef struct s_window
+typedef struct s_mlxinfo
 {
 	void	*mlx;
 	void	*win;
-}	t_window;
+	int		height;
+	int		width;
+}	t_mlxinfo;
 
 // ### FUNCTIONS ###
 void	error_exit(t_miniRT *rt, char *msg);
@@ -150,6 +152,6 @@ t_list	*ft_lstnew(t_id id, void *obj);
 
 //     window management
 void	create_window(t_miniRT scene);
-void	manage_hooks(t_window *window);
+void	manage_hooks(t_mlxinfo *window);
 
 #endif
