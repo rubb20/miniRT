@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 14:03:56 by isastre-         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:25:29 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <sys/time.h>
 //minilibX.
 # include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
 # include <X11/Xlib.h>
 // booleans
 # include <stdbool.h>
@@ -40,9 +41,12 @@
 // ### DEFINES ###
 // 	   MSG ERRORS
 # define WRONG_NUMBER_ARGS "miniRT only accepts a .rt scene as input"
+# define FAIL_MLX_INIT "minilibx failed on init"
+# define FAIL_WINDOW_CREATE "minilibx failed to create a window"
 //     CONSTANTS
 # define RTFILE_EXT ".rt"
 # define RTFILE_EXT_LEN 3
+# define WINDOW_TITLE "miniRT"
 
 // ### STRUCTS ###
 /**
@@ -128,6 +132,12 @@ typedef struct s_miniRT
 	t_list			*scene;
 }	t_miniRT;
 
+typedef struct s_window
+{
+	void	*mlx;
+	void	*win;
+}	t_window;
+
 // ### FUNCTIONS ###
 void	error_exit(t_miniRT *rt, char *msg);
 
@@ -137,5 +147,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(t_id id, void *obj);
+
+//     window management
+void	create_window(t_miniRT scene);
+void	manage_hooks(t_window *window);
 
 #endif
