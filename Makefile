@@ -10,6 +10,7 @@ SRC	= 	\
 		utils/lists/ft_lstdelone.c \
 		utils/lists/ft_lstlast.c \
 		utils/lists/ft_lstnew.c \
+		utils/vectors/vector_basic.c
 
 OBJ_DIR = objects
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
