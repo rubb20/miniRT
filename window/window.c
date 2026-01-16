@@ -6,13 +6,13 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:56:15 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 16:54:52 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/16 20:24:22 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-void	destroy_window(t_mlxinfo *window);
+static void	destroy_window(t_mlxinfo *window);
 
 /**
  * @brief (after parsing) creates a window using minilibx, renders the picture
@@ -44,13 +44,12 @@ void	create_window(t_miniRT scene)
  * @brief ends the execution of miniRT
  * @param window minilibx set up parameter and window pointer
  */
-void	destroy_window(t_mlxinfo *window)
+static void	destroy_window(t_mlxinfo *window)
 {
-	if (window->mlx != NULL)
-	{
-		if (window->win != NULL)
-			mlx_destroy_window(window->mlx, window->win);
-		mlx_destroy_display(window->mlx);
-		free(window->mlx);
-	}
+	if (window->mlx == NULL)
+		return ;
+	if (window->win != NULL)
+		mlx_destroy_window(window->mlx, window->win);
+	mlx_destroy_display(window->mlx);
+	free(window->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 13:34:31 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 16:53:58 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/16 20:20:33 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,8 @@ int	key_hook(int keycode, t_mlxinfo *window);
  */
 void	manage_hooks(t_mlxinfo *window)
 {
-	mlx_hook(window->win, 17, 0, end_loop_hook, window);
+	mlx_hook(window->win, CLOSE_WINDOW, 0, end_loop_hook, window);
 	mlx_key_hook(window->win, key_hook, window);
-}
-
-/**
- * @brief ends up the loop for the window
- * @param window pointer for minilibx created window
- */
-int	end_loop_hook(t_mlxinfo *window)
-{
-	mlx_loop_end(window->mlx);
-	return (0);
 }
 
 /**
@@ -45,5 +35,15 @@ int	key_hook(int keycode, t_mlxinfo *window)
 {
 	if (keycode == XK_Escape)
 		end_loop_hook(window);
+	return (0);
+}
+
+/**
+ * @brief ends up the loop for the window
+ * @param window pointer for minilibx created window
+ */
+int	end_loop_hook(t_mlxinfo *window)
+{
+	mlx_loop_end(window->mlx);
 	return (0);
 }
