@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 16:52:16 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:20:30 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define RTFILE_EXT ".rt"
 # define RTFILE_EXT_LEN 3
 # define WINDOW_TITLE "miniRT"
+# define CLOSE_WINDOW 17
 
 // ### STRUCTS ###
 /**
