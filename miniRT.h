@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2025/12/23 21:30:46 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:32:26 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,12 @@ typedef struct s_miniRT
 }	t_miniRT;
 
 // ### FUNCTIONS ###
-void	error_exit(t_miniRT *rt, char *msg);
+void		error_exit(t_miniRT *rt, char *msg);
 
 //     structs
 int	atoi_err(char *str, bool *err, int min, int max);
+t_color		*create_color(char *input);
+t_3dvector	*create_3dvector(char *input);
 
 t_color		*create_color(char *input);
 t_3dvector	*create_3dvector(char *input);
@@ -148,10 +150,10 @@ t_3dvector	*create_3dvector(char *input);
 void	parse(t_miniRT *rt, char *filename);
 
 //     lists utils
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(t_id id, void *obj);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
+t_list		*ft_lstlast(t_list *lst);
+t_list		*ft_lstnew(t_id id, void *obj);
 
 #endif
