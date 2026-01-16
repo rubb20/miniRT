@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:56:15 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/16 20:24:22 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:27:35 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	create_window(t_miniRT scene)
 		destroy_window(&window);
 		error_exit(&scene, FAIL_WINDOW_CREATE);
 	}
+	scene.mlxinfo = window;
 	manage_hooks(&window);
 	//render
 	mlx_loop(window.mlx);

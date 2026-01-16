@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/16 21:20:30 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:27:14 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_miniRT
 	t_ambient_light	ambient_light;
 	t_camera		camera;
 	t_light			light;
+	t_mlxinfo		mlxinfo;
 	t_list			*scene;
 }	t_miniRT;
 
