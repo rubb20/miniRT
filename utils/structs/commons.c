@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 20:08:05 by isastre-          #+#    #+#             */
-/*   Updated: 2025/12/23 18:05:05 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/01/16 18:05:13 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_color	*create_color(char *input)
 	color = ft_calloc(1, sizeof(t_color)); // TODO error
 	colors = ft_split(input, ","); // TODO error
 
+	// TODO use atoi_err
 	color->r = ft_atoi(colors[0]);
 	color->g = ft_atoi(colors[1]);
 	color->b = ft_atoi(colors[2]);

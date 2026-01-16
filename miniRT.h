@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/16 17:32:26 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/01/16 18:09:57 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@
 
 // ### DEFINES ###
 //     ELEMENT TYPES
-# define AMBIENT_LIGHT "A"
-# define CAMERA "C"
-# define LIGHT "L"
-# define SPHERE "sp"
-# define PLANE "pl"
-# define CYLINDER "cy"
+# define ID_AMBIENT_LIGHT "A"
+# define ID_CAMERA "C"
+# define ID_LIGHT "L"
+# define ID_SPHERE "sp"
+# define ID_PLANE "pl"
+# define ID_CYLINDER "cy"
 // 	   MSG ERRORS
 # define WRONG_NUMBER_ARGS "miniRT only accepts a .rt scene as input"
 # define OPEN_ERROR "Error while opening the file"
@@ -140,14 +140,13 @@ typedef struct s_miniRT
 void		error_exit(t_miniRT *rt, char *msg);
 
 //     structs
-int	atoi_err(char *str, bool *err, int min, int max);
 t_color		*create_color(char *input);
 t_3dvector	*create_3dvector(char *input);
 
-t_color		*create_color(char *input);
-t_3dvector	*create_3dvector(char *input);
+int			atoi_err(char *str, bool *err, int min, int max);
+
 //     parse
-void	parse(t_miniRT *rt, char *filename);
+void		parse(t_miniRT *rt, char *filename);
 
 //     lists utils
 void		ft_lstadd_back(t_list **lst, t_list *new);

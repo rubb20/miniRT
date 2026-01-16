@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:12 by isastre-          #+#    #+#             */
-/*   Updated: 2025/12/22 12:18:25 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/01/16 19:06:51 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,18 @@ void	create_element(char *line)
 	}
 	
 	id = params[0];
-	if (ft_equals(id, AMBIENT_LIGHT))
-		create_ambient_light(params);
-	else if (ft_equals(id, CAMERA))
-		create_camera(params);
-	else if (ft_equals(id, LIGHT))
-		create_light(params);
-	else if (ft_equals(id, SPHERE))
-		create_sphere(params);
-	else if (ft_equals(id, PLANE))
-		create_plane(params);
-	else if (ft_equals(id, CYLINDER))
-		create_cylinder(params);
+	// TODO create and implement functions
+	// if (ft_equals(id, ID_AMBIENT_LIGHT))
+	// 	create_ambient_light(params);
+	// else if (ft_equals(id, ID_CAMERA))
+	// 	create_camera(params);
+	// else if (ft_equals(id, ID_LIGHT))
+	// 	create_light(params);
+	// else if (ft_equals(id, ID_SPHERE))
+	// 	create_sphere(params);
+	// else if (ft_equals(id, ID_PLANE))
+	// 	create_plane(params);
+	// else if (ft_equals(id, ID_CYLINDER))
+	// 	create_cylinder(params);
 	// else error INVALID_ID_ERROR
 }
