@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/16 21:27:14 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/17 21:15:08 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,15 +142,25 @@ typedef struct s_mlxinfo
 	int		width;
 }	t_mlxinfo;
 
+// ### OPERATIONS ###
+t_3dvector	vector_sum(t_3dvector a, t_3dvector b);
+t_3dvector	vector_sub(t_3dvector a, t_3dvector b);
+t_3dvector	vector_scale(t_3dvector a, float k);
+float		vector_length(t_3dvector a);
+t_3dvector	vector_normalize(t_3dvector a);
+float		vec_dot(t_3dvector a, t_3dvector b);
+t_3dvector	vec_cross(t_3dvector a, t_3dvector b);
+float		vec_distance(t_3dvector a, t_3dvector b);
+
 // ### FUNCTIONS ###
-void	error_exit(t_miniRT *rt, char *msg);
+void		error_exit(t_miniRT *rt, char *msg);
 
 //     lists utils
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(t_id id, void *obj);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
+t_list		*ft_lstlast(t_list *lst);
+t_list		*ft_lstnew(t_id id, void *obj);
 
 //     window management
 void	create_window(t_miniRT scene);

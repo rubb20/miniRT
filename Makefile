@@ -10,6 +10,8 @@ SRC	= 	\
 		utils/lists/ft_lstdelone.c \
 		utils/lists/ft_lstlast.c \
 		utils/lists/ft_lstnew.c \
+		utils/vectors/vector_basic.c \
+		utils/vectors/vector_advanced.c \
 		window/hooks.c \
 		window/window.c \
 
