@@ -11,6 +11,8 @@ SRC	= 	\
 		utils/lists/ft_lstlast.c \
 		utils/lists/ft_lstnew.c \
 		utils/vectors/vector_basic.c
+		window/hooks.c \
+		window/window.c \
 
 OBJ_DIR = objects
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
