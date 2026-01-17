@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/17 21:15:08 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/17 21:25:58 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(t_id id, void *obj);
 
 //     window management
-void	create_window(t_miniRT scene);
-void	manage_hooks(t_mlxinfo *window);
+void		create_window(t_miniRT scene);
+void		manage_hooks(t_mlxinfo *window);
 
 #endif
