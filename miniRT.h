@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/13 20:13:06 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/01/17 21:12:16 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,9 @@ t_3dvector	vector_sub(t_3dvector a, t_3dvector b);
 t_3dvector	vector_scale(t_3dvector a, float k);
 float		vector_length(t_3dvector a);
 t_3dvector	vector_normalize(t_3dvector a);
+float		vec_dot(t_3dvector a, t_3dvector b);
+t_3dvector	vec_cross(t_3dvector a, t_3dvector b);
+float		vec_distance(t_3dvector a, t_3dvector b);
 
 // ### FUNCTIONS ###
 void		error_exit(t_miniRT *rt, char *msg);
