@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/16 18:09:57 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/01/26 20:26:41 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@
 //     CONSTANTS
 # define RTFILE_EXT ".rt"
 # define RTFILE_EXT_LEN 3
+# define DECIMAL_PART 2
+# define MAX_DECIMAL 99
 
 // ### STRUCTS ###
 /**
@@ -143,10 +145,10 @@ void		error_exit(t_miniRT *rt, char *msg);
 t_color		*create_color(char *input);
 t_3dvector	*create_3dvector(char *input);
 
-int			atoi_err(char *str, bool *err, int min, int max);
-
 //     parse
 void		parse(t_miniRT *rt, char *filename);
+int			atoi_err(char *str, bool *err, int min, int max);
+float		atof_err(char *str, bool *err, int min, int max);
 
 //     lists utils
 void		ft_lstadd_back(t_list **lst, t_list *new);

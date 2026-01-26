@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 20:08:05 by isastre-          #+#    #+#             */
-/*   Updated: 2026/01/16 18:05:13 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:06:51 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ t_color	*create_color(char *input)
 {
 	t_color	*color;
 	char	*colors;
+	bool	err;
 
 	color = ft_calloc(1, sizeof(t_color)); // TODO error
 	colors = ft_split(input, ","); // TODO error
 
-	// TODO use atoi_err
-	color->r = ft_atoi(colors[0]);
-	color->g = ft_atoi(colors[1]);
-	color->b = ft_atoi(colors[2]);
-	free(colors);
+	err = false;
+	color->r = atoi_err(colors[0], &err, 0, 255);
+	color->g = atoi_err(colors[1], &err, 0, 255);
+	color->b = atoi_err(colors[2], &err, 0, 255);
+
+	ft_free_str_array(colors);
+	// TODO tratar atoi error en caso de que haya
 	return (color);
 }
 
@@ -40,6 +43,6 @@ t_3dvector	*create_3dvector(char *input)
 	vector->x = ft_atof(coords[0]);
 	vector->y = ft_atof(coords[1]);
 	vector->z = ft_atof(coords[2]);
-	free(coords);
+	ft_free_str_array(coords);
 	return (vector);
 }
