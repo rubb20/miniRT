@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/21 20:58:31 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/21 21:18:39 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@
  */
 typedef struct s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	int	r; // [0,255]
+	int	g; // [0,255]
+	int	b; // [0,255]
 }	t_color;
 
 typedef struct s_3dvector
@@ -80,21 +80,21 @@ typedef struct s_3dvector
 
 typedef struct s_ambient_light
 {
-	double	ratio;
+	double	ratio; // [0,1]
 	t_color	rgb;
 }	t_ambient_light;
 
 typedef struct s_camera
 {
-	t_3dvector	pos;
-	t_3dvector	dir;
-	int			fov;
+	t_3dvector	pos; // [N]
+	t_3dvector	dir; // [-1,1]
+	int			fov; // [0,180]
 }	t_camera;
 
 typedef struct s_light
 {
-	t_3dvector	pos;
-	double		ratio;
+	t_3dvector	pos; // [N]
+	double		ratio; // [0,1]
 	t_color		rgb;
 }	t_light;
 
@@ -114,24 +114,24 @@ typedef struct s_list
 
 typedef struct s_sphere
 {
-	t_3dvector	pos;
-	double		diameter;
+	t_3dvector	pos; // [N]
+	double		diameter; // [N]
 	t_color		rgb;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_3dvector	pos;
-	t_3dvector	dir;
+	t_3dvector	pos; // [N]
+	t_3dvector	dir; // [-1,1]
 	t_color		rgb;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_3dvector	pos;
-	t_3dvector	dir;
-	double		diameter;
-	double		height;
+	t_3dvector	pos; // [N]
+	t_3dvector	dir; // [-1,1]
+	double		diameter; // [N]
+	double		height; // [N]
 	t_color		rgb;
 }	t_cylinder;
 
