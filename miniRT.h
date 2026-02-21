@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/21 20:51:19 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:58:31 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ typedef struct s_color
 
 typedef struct s_3dvector
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_3dvector;
 
 typedef struct s_ambient_light
 {
-	float	ratio;
+	double	ratio;
 	t_color	rgb;
 }	t_ambient_light;
 
@@ -94,7 +94,7 @@ typedef struct s_camera
 typedef struct s_light
 {
 	t_3dvector	pos;
-	float		ratio;
+	double		ratio;
 	t_color		rgb;
 }	t_light;
 
@@ -115,7 +115,7 @@ typedef struct s_list
 typedef struct s_sphere
 {
 	t_3dvector	pos;
-	float		diameter;
+	double		diameter;
 	t_color		rgb;
 }	t_sphere;
 
@@ -130,8 +130,8 @@ typedef struct s_cylinder
 {
 	t_3dvector	pos;
 	t_3dvector	dir;
-	float		diameter;
-	float		height;
+	double		diameter;
+	double		height;
 	t_color		rgb;
 }	t_cylinder;
 
@@ -155,12 +155,12 @@ typedef struct s_miniRT
 // ### OPERATIONS ###
 t_3dvector	vector_sum(t_3dvector a, t_3dvector b);
 t_3dvector	vector_sub(t_3dvector a, t_3dvector b);
-t_3dvector	vector_scale(t_3dvector a, float k);
-float		vector_length(t_3dvector a);
+t_3dvector	vector_scale(t_3dvector a, double k);
+double		vector_length(t_3dvector a);
 t_3dvector	vector_normalize(t_3dvector a);
-float		vec_dot(t_3dvector a, t_3dvector b);
+double		vec_dot(t_3dvector a, t_3dvector b);
 t_3dvector	vec_cross(t_3dvector a, t_3dvector b);
-float		vec_distance(t_3dvector a, t_3dvector b);
+double		vec_distance(t_3dvector a, t_3dvector b);
 
 // ### FUNCTIONS ###
 void		error_exit(t_miniRT *rt, char *msg);

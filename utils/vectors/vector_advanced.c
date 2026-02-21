@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_advanced.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 21:01:26 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/17 21:11:37 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:59:07 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief calculates dot product
  * @return value of dot product
  */
-float	vec_dot(t_3dvector a, t_3dvector b)
+double	vec_dot(t_3dvector a, t_3dvector b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
@@ -38,7 +38,7 @@ t_3dvector	vec_cross(t_3dvector a, t_3dvector b)
 /**
  * @brief calculates the distance between two vectors
  */
-float	vec_distance(t_3dvector a, t_3dvector b)
+double	vec_distance(t_3dvector a, t_3dvector b)
 {
 	return (vector_length(vector_sub(a, b)));
 }
