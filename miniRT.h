@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/17 21:25:58 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/02/21 18:31:42 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,15 +125,6 @@ typedef struct s_cylinder
 	t_color		rgb;
 }	t_cylinder;
 
-typedef struct s_miniRT
-{
-	t_ambient_light	ambient_light;
-	t_camera		camera;
-	t_light			light;
-	t_mlxinfo		mlxinfo;
-	t_list			*scene;
-}	t_miniRT;
-
 typedef struct s_mlxinfo
 {
 	void	*mlx;
@@ -141,6 +132,22 @@ typedef struct s_mlxinfo
 	int		height;
 	int		width;
 }	t_mlxinfo;
+
+typedef struct s_ray
+{
+	t_3dvector origin;
+	t_3dvector dir;
+}	t_ray;
+
+typedef struct s_miniRT
+{
+	t_ambient_light	ambient_light;
+	t_camera		camera;
+	t_light			light;
+	t_mlxinfo		mlxinfo;
+	t_img			*frame;
+	t_list			*scene;
+}	t_miniRT;
 
 // ### OPERATIONS ###
 t_3dvector	vector_sum(t_3dvector a, t_3dvector b);
@@ -163,7 +170,14 @@ t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(t_id id, void *obj);
 
 //     window management
-void		create_window(t_miniRT scene);
+void		create_window(t_miniRT *scene);
 void		manage_hooks(t_mlxinfo *window);
+
+//     render
+void		render(t_miniRT *scene);
+t_ray		create_ray(int x, int y, t_miniRT *scene);
+float		intersect(t_ray ray, t_list *scene, t_list **obj);
+t_color		get_color(t_list lst);
+int			color_to_int(t_color c);
 
 #endif
