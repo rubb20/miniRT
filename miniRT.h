@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/03 16:58:16 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/21 20:51:19 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@
 # define RTFILE_EXT_LEN 3
 # define WINDOW_TITLE "miniRT"
 # define CLOSE_WINDOW 17
-# define DECIMAL_PART 2
-# define MAX_DECIMAL 99
+# define INT_MAX_LEN 10 // 2147483647
+# define DECIMAL_MAX_LEN 2
 
 // ### STRUCTS ###
 /**
@@ -135,6 +135,14 @@ typedef struct s_cylinder
 	t_color		rgb;
 }	t_cylinder;
 
+typedef struct s_mlxinfo
+{
+	void	*mlx;
+	void	*win;
+	int		height;
+	int		width;
+}	t_mlxinfo;
+
 typedef struct s_miniRT
 {
 	t_ambient_light	ambient_light;
@@ -143,14 +151,6 @@ typedef struct s_miniRT
 	t_mlxinfo		mlxinfo;
 	t_list			*scene;
 }	t_miniRT;
-
-typedef struct s_mlxinfo
-{
-	void	*mlx;
-	void	*win;
-	int		height;
-	int		width;
-}	t_mlxinfo;
 
 // ### OPERATIONS ###
 t_3dvector	vector_sum(t_3dvector a, t_3dvector b);
@@ -172,7 +172,7 @@ t_3dvector	*create_3dvector(char *input);
 //     parse
 void		parse(t_miniRT *rt, char *filename);
 int			atoi_err(char *str, bool *err, int min, int max);
-float		atof_err(char *str, bool *err, int min, int max);
+double		atod_err(char *str, bool *err, double min, double max);
 
 //     lists utils
 void		ft_lstadd_back(t_list **lst, t_list *new);
