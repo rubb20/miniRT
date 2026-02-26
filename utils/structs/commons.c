@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 20:08:05 by isastre-          #+#    #+#             */
-/*   Updated: 2026/02/26 17:43:37 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 18:41:54 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,11 @@ static char	**split_and_check(char *input, bool *err)
 		return (NULL);
 	}
 	return (splited);
+}
+
+bool	check_n_params(char **params, int expected, bool *err)
+{
+	if (ft_str_array_len(params) != expected)
+		*err = true;
+	return (*err);
 }

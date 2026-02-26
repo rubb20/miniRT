@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/26 17:38:33 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 19:02:53 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # define FAIL_MLX_INIT "minilibx failed on init"
 # define FAIL_WINDOW_CREATE "minilibx failed to create a window"
 # define OPEN_ERROR "Error while opening the file"
+# define PARSE_ERROR "Error while parsing. Verify the scene configuration"
 //     CONSTANTS
 # define RTFILE_EXT ".rt"
 # define RTFILE_EXT_LEN 3
@@ -95,7 +96,7 @@ typedef struct s_ambient_light
 typedef struct s_camera
 {
 	t_3dvector	pos; // [N]
-	t_3dvector	dir; // [-1,1]
+	t_3dvector	dir; // [-1,1] normalized
 	int			fov; // [0,180]
 }	t_camera;
 
@@ -130,14 +131,14 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	t_3dvector	pos; // [N]
-	t_3dvector	dir; // [-1,1]
+	t_3dvector	dir; // [-1,1] normalized
 	t_color		rgb;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	t_3dvector	pos; // [N]
-	t_3dvector	dir; // [-1,1]
+	t_3dvector	dir; // [-1,1] normalized
 	double		diameter; // [N]
 	double		height; // [N]
 	t_color		rgb;
@@ -174,14 +175,18 @@ bool		is_unit_vector(t_3dvector a);
 // ### FUNCTIONS ###
 void		error_exit(t_miniRT *rt, char *msg);
 
-//     structs
-t_color		*create_color(char *input);
-t_3dvector	*create_3dvector(char *input);
-
 //     parse
 void		parse(t_miniRT *rt, char *filename);
+void		create_ambient_light(t_miniRT *rt, char **params, bool *err);
+void		create_camera(t_miniRT *rt, char **params, bool *err);
+void		create_light(t_miniRT *rt, char **params, bool *err);
+
+//     parse utils
+t_color		parse_color(char *input, bool *err);
+t_3dvector	parse_3dvector(char *input, bool normalized, bool *err);
 int			atoi_err(char *str, bool *err, int min, int max);
 double		atod_err(char *str, bool *err, double min, double max);
+bool		check_n_params(char **params, int expected, bool *err);
 
 //     lists utils
 void		ft_lstadd_back(t_list **lst, t_list *new);
