@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 18:58:25 by isastre-          #+#    #+#             */
-/*   Updated: 2026/02/21 20:49:58 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 17:26:59 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ int	atoi_err(char *str, bool *err, int min, int max)
 	int		sign;
 
 	sign = get_sign(&str);
+	while (*str == '0' && ft_isdigit(*(str +1)))
+		str++;
+	if (!str)
+	{
+		*err = true;
+		return (0);
+	}
 	n = get_num(&str, err, INT_MAX_LEN) * sign;
 	*err = *err || is_unexpected(n, str, min, max);
 	return (n);
@@ -49,6 +56,13 @@ double	atod_err(char *str, bool *err, double min, double max)
 	int		dec_len;
 
 	sign = get_sign(&str);
+	while (*str == '0' && ft_isdigit(*(str +1)))
+		str++;
+	if (!str || *str == '.')
+	{
+		*err = true;
+		return (0);
+	}
 	n = get_num(&str, err, INT_MAX_LEN);
 	if (*str && *str != '.')
 		*err = true;
@@ -101,6 +115,7 @@ static int	get_num(char **str, bool *err, int max_len)
 
 /**
  * @brief checks if the number is valid or not given the possible min and max
+ * also checks that the number does not have unexpected chars
  * @returns true if its unvalid and false if its correct
  */
 static bool	is_unexpected(double n, char *str, double min, double max)

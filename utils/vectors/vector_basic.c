@@ -6,11 +6,11 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 20:45:32 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/21 20:58:53 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 16:38:39 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../../miniRT.h"
 
 /**
  * @brief calculates the sum of two vectors
@@ -57,7 +57,7 @@ t_3dvector	vector_normalize(t_3dvector a)
 	double	len;
 
 	len = vector_length(a);
-	if (len == 0.0f)
+	if (len == 0.0)
 		return (a);
-	return (vector_scale(a, 1.0f / len));
+	return (vector_scale(a, 1.0 / len));
 }

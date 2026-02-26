@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/21 21:18:39 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 17:38:33 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # include <X11/Xlib.h>
 // booleans
 # include <stdbool.h>
+// limits
+# include <limits.h>
+# include <float.h>
 // libft
 # include "libft/libft.h"
 
@@ -57,7 +60,12 @@
 # define WINDOW_TITLE "miniRT"
 # define CLOSE_WINDOW 17
 # define INT_MAX_LEN 10 // 2147483647
+# define INT_MIN_ACCEPTED INT_MIN
+# define INT_MAX_ACCEPTED INT_MAX
+# define DECIMAL_MIN_ACCEPTED -DBL_MAX
+# define DECIMAL_MAX_ACCEPTED DBL_MAX
 # define DECIMAL_MAX_LEN 2
+# define EPSILON 1e-6
 
 // ### STRUCTS ###
 /**
@@ -161,6 +169,7 @@ t_3dvector	vector_normalize(t_3dvector a);
 double		vec_dot(t_3dvector a, t_3dvector b);
 t_3dvector	vec_cross(t_3dvector a, t_3dvector b);
 double		vec_distance(t_3dvector a, t_3dvector b);
+bool		is_unit_vector(t_3dvector a);
 
 // ### FUNCTIONS ###
 void		error_exit(t_miniRT *rt, char *msg);
