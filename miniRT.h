@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/26 19:02:53 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 20:45:42 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,15 @@
 # define FAIL_MLX_INIT "minilibx failed on init"
 # define FAIL_WINDOW_CREATE "minilibx failed to create a window"
 # define OPEN_ERROR "Error while opening the file"
+# define MALLOC_ERROR "Error while performing malloc"
 # define PARSE_ERROR "Error while parsing. Verify the scene configuration"
+# define ELMNT_ARGS_ERROR "Unexpected number of arguments on element"
+# define ELMNT_SUBARGS_ERROR "Unexpected number of arguments on color or 3d vec"
+# define NOT_UNIT_VECTOR "Vector should be unit vector (normalized)"
+# define NO_NUMBER "There is no digit in the number to be parsed"
+# define UNEXPECTED_NUM "Unexpected number: is not between limits\
+ or contains unexpected chars"
+# define INVALID_ID "Invalid element ID"
 //     CONSTANTS
 # define RTFILE_EXT ".rt"
 # define RTFILE_EXT_LEN 3
@@ -187,6 +195,7 @@ t_3dvector	parse_3dvector(char *input, bool normalized, bool *err);
 int			atoi_err(char *str, bool *err, int min, int max);
 double		atod_err(char *str, bool *err, double min, double max);
 bool		check_n_params(char **params, int expected, bool *err);
+void		print_and_put_error(char *msg, bool *err);
 
 //     lists utils
 void		ft_lstadd_back(t_list **lst, t_list *new);

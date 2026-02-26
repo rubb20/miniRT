@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 20:08:05 by isastre-          #+#    #+#             */
-/*   Updated: 2026/02/26 19:57:29 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 20:28:04 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ t_3dvector	parse_3dvector(char *input, bool normalized, bool *err)
 	vector.y = atod_err(coords[1], err, min, max);
 	vector.z = atod_err(coords[2], err, min, max);
 	ft_free_str_array(coords);
-	if (normalized)
-		*err = *err || !is_unit_vector(vector);
+	if (normalized && !is_unit_vector(vector))
+		print_and_put_error(NOT_UNIT_VECTOR, err);
 	return (vector);
 }
 
@@ -69,7 +69,7 @@ static char	**split_and_check(char *input, bool *err)
 	splited = ft_split(input, ',');
 	if (!splited || ft_str_array_len(splited) != 3)
 	{
-		*err = true;
+		print_and_put_error(ELMNT_SUBARGS_ERROR, err);
 		ft_free_str_array(splited);
 		return (NULL);
 	}
@@ -83,6 +83,12 @@ static char	**split_and_check(char *input, bool *err)
 bool	check_n_params(char **params, int expected, bool *err)
 {
 	if (ft_str_array_len(params) -1 != expected)
-		*err = true;
+		print_and_put_error(ELMNT_ARGS_ERROR, err);
 	return (*err);
+}
+
+void	print_and_put_error(char *msg, bool *err)
+{
+	printf("Error\n%s\n", msg);
+	*err = true;
 }

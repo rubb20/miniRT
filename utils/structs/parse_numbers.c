@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 18:58:25 by isastre-          #+#    #+#             */
-/*   Updated: 2026/02/26 17:26:59 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/02/26 21:18:58 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ int	atoi_err(char *str, bool *err, int min, int max)
 		str++;
 	if (!str)
 	{
-		*err = true;
+		print_and_put_error(NO_NUMBER, err);
 		return (0);
 	}
 	n = get_num(&str, err, INT_MAX_LEN) * sign;
-	*err = *err || is_unexpected(n, str, min, max);
+	if (is_unexpected(n, str, min, max))
+		print_and_put_error(UNEXPECTED_NUM, err);
 	return (n);
 }
 
@@ -60,19 +61,20 @@ double	atod_err(char *str, bool *err, double min, double max)
 		str++;
 	if (!str || *str == '.')
 	{
-		*err = true;
+		print_and_put_error(NO_NUMBER, err);
 		return (0);
 	}
 	n = get_num(&str, err, INT_MAX_LEN);
 	if (*str && *str != '.')
-		*err = true;
+		print_and_put_error(UNEXPECTED_NUM, err);
 	if (!*str || *err == true)
 		return (n * sign);
 	str++;
 	dec_len = ft_strlen(str);
 	n += get_num(&str, err, DECIMAL_MAX_LEN) / pow(10, dec_len);
 	n *= sign;
-	*err = *err || is_unexpected(n, str, min, max);
+	if (is_unexpected(n, str, min, max))
+		print_and_put_error(UNEXPECTED_NUM, err);
 	return (n);
 }
 
@@ -100,7 +102,7 @@ static int	get_num(char **str, bool *err, int max_len)
 
 	if (!**str || !ft_isdigit(**str))
 	{
-		*err = true;
+		print_and_put_error(NO_NUMBER, err);
 		return (0);
 	}
 	n = 0;
