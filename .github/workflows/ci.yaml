@@ -1,0 +1,30 @@
+name: MiniRT CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential libxext-dev libx11-dev libbsd-dev
+
+      - name: Build MiniLibX
+        run: |
+          cd minilibx-linux
+          make
+
+      - name: Build miniRT
+        run: make
