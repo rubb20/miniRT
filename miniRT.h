@@ -125,6 +125,14 @@ typedef struct s_cylinder
 	t_color		rgb;
 }	t_cylinder;
 
+typedef struct s_mlxinfo
+{
+	void	*mlx;
+	void	*win;
+	int		height;
+	int		width;
+}	t_mlxinfo;
+
 typedef struct s_miniRT
 {
 	t_ambient_light	ambient_light;
@@ -133,14 +141,6 @@ typedef struct s_miniRT
 	t_mlxinfo		mlxinfo;
 	t_list			*scene;
 }	t_miniRT;
-
-typedef struct s_mlxinfo
-{
-	void	*mlx;
-	void	*win;
-	int		height;
-	int		width;
-}	t_mlxinfo;
 
 // ### OPERATIONS ###
 t_3dvector	vector_sum(t_3dvector a, t_3dvector b);
