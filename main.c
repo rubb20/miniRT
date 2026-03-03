@@ -17,6 +17,7 @@ static bool	file_has_rt_extension(char *filename);
 int main(int argc, char *argv[])
 {
 	t_miniRT	rt;
+	(void) rt;
 
 	if (argc != 2 || !file_has_rt_extension(argv[1]))
 		error_exit(NULL, WRONG_NUMBER_ARGS);

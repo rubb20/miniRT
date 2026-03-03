@@ -1,7 +1,7 @@
 # Variables
 NAME = miniRT
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -O3
 
 SRC	= 	\
 		main.c \
@@ -25,8 +25,8 @@ OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 LIBFT = libft/libft.a
 MLX	= minilibx-linux/libmlx_Linux.a
 
-MLX_INCLUDE = -I/usr/include -Iminilibx-linux -O3
-MLX_LINK = -Lminilibx-linux -lmlx -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm
+MLX_INCLUDE = -Iminilibx-linux
+MLX_LINK = -Lminilibx-linux -lmlx_Linux -lXext -lX11
 MATH_LINK = -lm
 
 # Rules
