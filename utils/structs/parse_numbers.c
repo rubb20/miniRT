@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 18:58:25 by isastre-          #+#    #+#             */
-/*   Updated: 2026/02/26 21:18:58 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:51:32 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ int	atoi_err(char *str, bool *err, int min, int max)
 	int		sign;
 
 	sign = get_sign(&str);
-	while (*str == '0' && ft_isdigit(*(str +1)))
-		str++;
-	if (!str)
-	{
-		print_and_put_error(NO_NUMBER, err);
-		return (0);
-	}
 	n = get_num(&str, err, INT_MAX_LEN) * sign;
 	if (is_unexpected(n, str, min, max))
 		print_and_put_error(UNEXPECTED_NUM, err);
@@ -57,21 +50,13 @@ double	atod_err(char *str, bool *err, double min, double max)
 	int		dec_len;
 
 	sign = get_sign(&str);
-	while (*str == '0' && ft_isdigit(*(str +1)))
-		str++;
-	if (!str || *str == '.')
-	{
-		print_and_put_error(NO_NUMBER, err);
-		return (0);
-	}
 	n = get_num(&str, err, INT_MAX_LEN);
-	if (*str && *str != '.')
-		print_and_put_error(UNEXPECTED_NUM, err);
-	if (!*str || *err == true)
-		return (n * sign);
-	str++;
-	dec_len = ft_strlen(str);
-	n += get_num(&str, err, DECIMAL_MAX_LEN) / pow(10, dec_len);
+	if (*str == '.' && !*err)
+	{
+		str++;
+		dec_len = ft_strlen(str);
+		n += get_num(&str, err, DECIMAL_MAX_LEN) / pow(10, dec_len);
+	}
 	n *= sign;
 	if (is_unexpected(n, str, min, max))
 		print_and_put_error(UNEXPECTED_NUM, err);
@@ -100,6 +85,8 @@ static int	get_num(char **str, bool *err, int max_len)
 {
 	long	n;
 
+	while (**str == '0' && ft_isdigit(*((*str) +1)))
+		(*str)++;
 	if (!**str || !ft_isdigit(**str))
 	{
 		print_and_put_error(NO_NUMBER, err);

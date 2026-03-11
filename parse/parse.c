@@ -65,7 +65,7 @@ static void	create_element(t_miniRT *rt, char **params, bool *err)
 {
 	char	*id;
 
-	if (params == NULL || *err || params[0][0] == '#')
+	if (params == NULL || *err)
 		return  ;
 	id = params[0];
 	if (ft_equals(id, ID_AMBIENT_LIGHT))

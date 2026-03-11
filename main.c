@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2025/12/23 14:03:27 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/11 20:45:42 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ static bool	file_has_rt_extension(char *filename);
 int main(int argc, char *argv[])
 {
 	t_miniRT	rt;
-	(void) rt;
-
+	
+	rt.scene = NULL;
+	rt.has_ambient_light = false;
+	rt.has_camera = false;
+	rt.has_light = false;
 	if (argc != 2 || !file_has_rt_extension(argv[1]))
 		error_exit(NULL, WRONG_NUMBER_ARGS);
 	parse(&rt, argv[1]);

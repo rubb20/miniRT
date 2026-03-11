@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/09 18:39:40 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/11 20:37:54 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define ID_CYLINDER "cy"
 // 	   MSG ERRORS
 # define WRONG_NUMBER_ARGS "miniRT only accepts a .rt scene as input"
+# define DUPLICATED_ELEMENT "Cannot create more than 1 camera, light or ambient light"
 # define FAIL_MLX_INIT "minilibx failed on init"
 # define FAIL_WINDOW_CREATE "minilibx failed to create a window"
 # define OPEN_ERROR "Error while opening the file"
@@ -72,6 +73,7 @@
 # define INT_MIN_ACCEPTED INT_MIN
 # define INT_MAX_ACCEPTED INT_MAX
 # define DECIMAL_MIN_ACCEPTED -DBL_MAX
+# define DECIMAL_MIN_POSITIVE_ACCEPTED 0
 # define DECIMAL_MAX_ACCEPTED DBL_MAX
 # define DECIMAL_MAX_LEN 2
 # define EPSILON 1e-6
@@ -167,6 +169,9 @@ typedef struct s_miniRT
 	t_light			light;
 	t_mlxinfo		mlxinfo;
 	t_list			*scene;
+	bool			has_ambient_light;
+	bool			has_camera;
+	bool			has_light;
 }	t_miniRT;
 
 // ### OPERATIONS ###

@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 20:08:05 by isastre-          #+#    #+#             */
-/*   Updated: 2026/02/26 20:28:04 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/11 19:19:53 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,13 @@ static char	**split_and_check(char *input, bool *err)
 /**
  * @brief checks if the n of params for creating an element is correct
  * @note -1 is bc the params also contain the element ID
+ * @returns true if n is correct, false if not
  */
 bool	check_n_params(char **params, int expected, bool *err)
 {
 	if (ft_str_array_len(params) -1 != expected)
 		print_and_put_error(ELMNT_ARGS_ERROR, err);
-	return (*err);
+	return (!*err);
 }
 
 void	print_and_put_error(char *msg, bool *err)
