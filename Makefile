@@ -7,6 +7,7 @@ SRC	= 	\
 		main.c \
 		parse/parse.c \
 		parse/basic_elements.c \
+		parse/elements.c \
 		utils/structs/commons.c \
 		utils/structs/parse_numbers.c \
 		utils/lists/ft_lstadd_back.c \

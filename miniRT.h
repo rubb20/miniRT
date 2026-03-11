@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/26 20:45:42 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/09 18:39:40 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,9 @@ void		parse(t_miniRT *rt, char *filename);
 void		create_ambient_light(t_miniRT *rt, char **params, bool *err);
 void		create_camera(t_miniRT *rt, char **params, bool *err);
 void		create_light(t_miniRT *rt, char **params, bool *err);
+void		create_sphere(t_miniRT *rt, char **params, bool *err);
+void		create_plane(t_miniRT *rt, char **params, bool *err);
+void		create_cylinder(t_miniRT *rt, char **params, bool *err);
 
 //     parse utils
 t_color		parse_color(char *input, bool *err);

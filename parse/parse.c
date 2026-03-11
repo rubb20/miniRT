@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:12 by isastre-          #+#    #+#             */
-/*   Updated: 2026/02/26 21:26:51 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/11 18:54:05 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,14 @@ static char	**get_params(char *line, bool *err)
 		print_and_put_error(MALLOC_ERROR, err);
 	free(trimmed_line);
 	return (params);
-
 }
 
 static void	create_element(t_miniRT *rt, char **params, bool *err)
 {
 	char	*id;
 
-	if (params == NULL || *err)
+	if (params == NULL || *err || params[0][0] == '#')
 		return  ;
-	
-	int i = 0;
-	while (params[i])
-	{
-		printf("param[%u] <%s>\n", i, params[i]);
-		i++;
-	}
-	
 	id = params[0];
 	if (ft_equals(id, ID_AMBIENT_LIGHT))
 		create_ambient_light(rt, params, err);
@@ -83,13 +74,12 @@ static void	create_element(t_miniRT *rt, char **params, bool *err)
 		create_camera(rt, params, err);
 	else if (ft_equals(id, ID_LIGHT))
 		create_light(rt, params, err);
-	// TODO implementar. La funcion que crea el elemento lo añade a la lista
-	// else if (ft_equals(id, ID_SPHERE))
-	// 	create_sphere(params);
-	// else if (ft_equals(id, ID_PLANE))
-	// 	create_plane(params);
-	// else if (ft_equals(id, ID_CYLINDER))
-	// 	create_cylinder(params);
+	else if (ft_equals(id, ID_SPHERE))
+		create_sphere(rt, params, err);
+	else if (ft_equals(id, ID_PLANE))
+		create_plane(rt, params, err);
+	else if (ft_equals(id, ID_CYLINDER))
+		create_cylinder(rt, params, err);
 	else
 		print_and_put_error(INVALID_ID, err);
 	ft_free_str_array(params);
