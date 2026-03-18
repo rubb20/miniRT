@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/11 20:37:54 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/18 14:58:27 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@
 # define ID_CYLINDER "cy"
 // 	   MSG ERRORS
 # define WRONG_NUMBER_ARGS "miniRT only accepts a .rt scene as input"
-# define DUPLICATED_ELEMENT "Cannot create more than 1 camera, light or ambient light"
+# define DUPLICATED_ELEMENT "Scene cannot have more than 1 camera, light or ambient light"
+# define MISSING_ELEMENT "Scene must have 1 camera, 1 light and 1 ambient light"
 # define FAIL_MLX_INIT "minilibx failed on init"
 # define FAIL_WINDOW_CREATE "minilibx failed to create a window"
 # define OPEN_ERROR "Error while opening the file"
@@ -187,6 +188,7 @@ bool		is_unit_vector(t_3dvector a);
 
 // ### FUNCTIONS ###
 void		error_exit(t_miniRT *rt, char *msg);
+void		free_rt(t_miniRT *rt);
 
 //     parse
 void		parse(t_miniRT *rt, char *filename);

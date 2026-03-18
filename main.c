@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/11 20:45:42 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/18 15:03:50 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int main(int argc, char *argv[])
 	if (argc != 2 || !file_has_rt_extension(argv[1]))
 		error_exit(NULL, WRONG_NUMBER_ARGS);
 	parse(&rt, argv[1]);
+	if (!rt.has_camera || !rt.has_light || !rt.has_ambient_light)
+		error_exit(&rt, MISSING_ELEMENT);
+	// TODO @rub paint scene
+	free_rt(&rt);
 	return (EXIT_SUCCESS);
 }
 
@@ -49,7 +53,17 @@ static bool	file_has_rt_extension(char *filename)
 void	error_exit(t_miniRT *rt, char *msg)
 {
 	printf("Error\n%s\n", msg);
-	// free miniRT
-	(void) rt;
+	free_rt(rt);
 	exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief frees all the miniRT allocated resources (scene & mlxinfo)
+ */
+void	free_rt(t_miniRT *rt)
+{
+	if (!rt)
+		return;
+	ft_lstclear(&(rt->scene), free);
+	// TODO @rub free t_mlxinfo
 }

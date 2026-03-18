@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 20:08:05 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/11 19:19:53 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:39:47 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ bool	check_n_params(char **params, int expected, bool *err)
 	return (!*err);
 }
 
+/**
+ * @brief prints the given msg and puts err to true
+ */
 void	print_and_put_error(char *msg, bool *err)
 {
 	printf("Error\n%s\n", msg);
