@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 18:58:25 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/11 21:51:32 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/18 15:53:35 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	get_num(char **str, bool *err, int max_len)
 {
 	long	n;
 
-	while (**str == '0' && ft_isdigit(*((*str) +1)))
+	while (**str == '0' && ft_isdigit(*((*str) + 1)))
 		(*str)++;
 	if (!**str || !ft_isdigit(**str))
 	{

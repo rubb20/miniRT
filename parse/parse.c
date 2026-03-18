@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:12 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/11 18:54:05 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/18 15:52:35 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@ void	parse(t_miniRT *rt, char *filename)
 	if (file < 0)
 		return (error_exit(rt, OPEN_ERROR));
 	err = false;
-	while ((line = get_next_line(file))) // TODO error gnl? y cambiar por norminette
+	line = get_next_line(file);
+	while (line)
 	{
 		printf("line: %s\n", line);
 		params = get_params(line, &err);
 		free(line);
 		create_element(rt, params, &err);
 		if (err)
-		{
-			close(file);
-			error_exit(rt, PARSE_ERROR);
-		}	
+			break ;
+		line = get_next_line(file);
 	}
 	close(file);
+	if (err)
+		error_exit(rt, PARSE_ERROR);
 }
 
 static char	**get_params(char *line, bool *err)
@@ -66,7 +67,7 @@ static void	create_element(t_miniRT *rt, char **params, bool *err)
 	char	*id;
 
 	if (params == NULL || *err)
-		return  ;
+		return ;
 	id = params[0];
 	if (ft_equals(id, ID_AMBIENT_LIGHT))
 		create_ambient_light(rt, params, err);
