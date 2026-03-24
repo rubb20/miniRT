@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/03 20:46:49 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:06:14 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ typedef struct s_mlxinfo
 
 typedef struct s_ray
 {
-	t_3dvector origin;
-	t_3dvector dir;
+	t_3dvector	origin;
+	t_3dvector	dir;
 }	t_ray;
 
 typedef struct s_miniRT
@@ -179,5 +179,11 @@ t_ray		create_ray(int x, int y, t_miniRT *scene);
 float		intersect(t_ray ray, t_list *scene, t_list **obj);
 t_color		get_color(t_list lst);
 int			color_to_int(t_color c);
+t_color		color_sum(t_color a, t_color b);
+t_color		fminf_color(t_color color1, t_color color2, int max);
+t_color		apply_light(t_color obj, float intensity, t_color light_color);
+float		closest_object(float t1, float t2);
+t_3dvector	get_normal(t_list *hit, t_3dvector hit_point);
+bool		intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, float *t);
 
 #endif

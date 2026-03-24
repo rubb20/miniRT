@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 21:22:25 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/21 21:13:31 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/24 21:21:43 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,41 +52,41 @@ static t_color	ambient_color(t_miniRT *scene, t_color obj)
 	return (a);
 }
 
+/**
+ * 
+ * Formula de Phong para el calculo de iluminacion en un punto:
+ * luz difusa + luz ambiental.
+ * luz difusa: kd * lightColor * max(0,N*L) siendo N la normal y L el vector desde el punto a la luz.
+ * luz ambiental: ka * ambientColor.
+ * kd y ka son factores de luz del objeto (el color del objeto).
+ */
 static int	render_pixel(t_ray ray, t_miniRT *scene)
 {
 	t_list		*hit;
 	float		t;
 	t_color		obj;
-	t_color		amb;
 	t_color		diff;
-	t_color		final;
 	t_3dvector	hit_point;
-	t_3dvector	normal;
 	t_3dvector	L;
+	t_3dvector	normalL;
 	float		diffuse;
 
 	t = intersect(ray, scene->scene, &hit);
 	if (t < 0.0f)
 		return (0);
 	hit_point = vector_sum(ray.origin, vector_scale(ray.dir, t));
-	normal = vector_normalize(
-		vector_sub(hit_point, ((t_sphere *)hit->obj)->pos));
-	L = vector_normalize(vector_sub(scene->light.pos, hit_point));
-	diffuse = fmaxf(vec_dot(normal, L), 0.0f) * scene->light.ratio;
+	L = vector_sub(scene->light.pos, hit_point);
+	normalL = vector_normalize(L);
 	obj = get_color(*hit);
-	amb = ambient_color(scene, obj);
-
-	diff.r = obj.r * diffuse * (scene->light.rgb.r / 255.0f);
-	diff.g = obj.g * diffuse * (scene->light.rgb.g / 255.0f);
-	diff.b = obj.b * diffuse * (scene->light.rgb.b / 255.0f);
-
-	final.r = fminf(amb.r + diff.r, 255);
-	final.g = fminf(amb.g + diff.g, 255);
-	final.b = fminf(amb.b + diff.b, 255);
-
-	return (color_to_int(final));
+	t = intersect((t_ray){vector_sum(hit_point, vector_scale(get_normal(hit, hit_point),1e-4f)), normalL}, scene->scene, NULL);
+	diff = ambient_color(scene, obj);
+	if (!(t > 0.0f && t < vector_length(L)))
+	{
+		diffuse = fmaxf(vec_dot(get_normal(hit, hit_point), normalL), 0.0f) * scene->light.ratio;
+        diff = fminf_color(apply_light(obj, diffuse, scene->light.rgb), diff, 255);
+	}
+	return (color_to_int(diff));
 }
-
 
 static void	put_pixel(t_img *img, int x, int y, int color)
 {
