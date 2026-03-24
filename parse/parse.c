@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:12 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/18 15:52:35 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/24 21:18:38 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	parse(t_miniRT *rt, char *filename)
 	line = get_next_line(file);
 	while (line)
 	{
-		printf("line: %s\n", line);
+		if (!ft_is_empty(line))
+			printf("Parsing: %s", line);
 		params = get_params(line, &err);
 		free(line);
 		create_element(rt, params, &err);

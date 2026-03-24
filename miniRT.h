@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/18 15:56:57 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/24 19:42:31 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # include <stdbool.h>
 // limits
 # include <limits.h>
-# include <float.h>
 // libft
 # include "libft/libft.h"
 
@@ -74,9 +73,9 @@
 # define INT_MAX_LEN 10 // 2147483647
 # define INT_MIN_ACCEPTED INT_MIN
 # define INT_MAX_ACCEPTED INT_MAX
-# define DECIMAL_MIN_ACCEPTED -DBL_MAX
+# define DECIMAL_MIN_ACCEPTED -__DBL_MAX__
 # define DECIMAL_MIN_POSITIVE_ACCEPTED 0
-# define DECIMAL_MAX_ACCEPTED DBL_MAX
+# define DECIMAL_MAX_ACCEPTED __DBL_MAX__
 # define DECIMAL_MAX_LEN 2
 # define EPSILON 1e-6
 

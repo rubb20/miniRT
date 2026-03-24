@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/18 15:03:50 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/24 21:24:30 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static bool	file_has_rt_extension(char *filename);
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_miniRT	rt;
-	
+
 	rt.scene = NULL;
 	rt.has_ambient_light = false;
 	rt.has_camera = false;
@@ -63,7 +63,7 @@ void	error_exit(t_miniRT *rt, char *msg)
 void	free_rt(t_miniRT *rt)
 {
 	if (!rt)
-		return;
+		return ;
 	ft_lstclear(&(rt->scene), free);
 	// TODO @rub free t_mlxinfo
 }
