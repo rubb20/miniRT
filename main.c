@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/24 21:24:30 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/30 12:58:30 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static bool	file_has_rt_extension(char *filename)
 void	error_exit(t_miniRT *rt, char *msg)
 {
 	printf("Error\n%s\n", msg);
+	get_next_line(-1);
 	free_rt(rt);
 	exit(EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 20:53:28 by isastre-          #+#    #+#             */
-/*   Updated: 2025/10/03 13:30:44 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/30 12:51:06 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ char	*get_next_line(int fd)
 {
 	static char	*line;
 
+	if (fd == -1 && line != NULL)
+	{
+		free(line);
+		return (NULL);
+	}
 	if (BUFFER_SIZE <= 0 || fd < 0 || fd > __FD_SETSIZE)
 		return (NULL);
 	if (!line)
