@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/17 21:25:58 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/24 19:42:31 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,49 @@
 # include <X11/Xlib.h>
 // booleans
 # include <stdbool.h>
+// limits
+# include <limits.h>
 // libft
 # include "libft/libft.h"
 
 // ### DEFINES ###
+//     ELEMENT TYPES
+# define ID_AMBIENT_LIGHT "A"
+# define ID_CAMERA "C"
+# define ID_LIGHT "L"
+# define ID_SPHERE "sp"
+# define ID_PLANE "pl"
+# define ID_CYLINDER "cy"
 // 	   MSG ERRORS
 # define WRONG_NUMBER_ARGS "miniRT only accepts a .rt scene as input"
+# define DUPLICATED_ELEMENT "Scene cannot have more than 1 camera, light\
+ or ambient light"
+# define MISSING_ELEMENT "Scene must have 1 camera, 1 light and 1 ambient light"
 # define FAIL_MLX_INIT "minilibx failed on init"
 # define FAIL_WINDOW_CREATE "minilibx failed to create a window"
+# define OPEN_ERROR "Error while opening the file"
+# define MALLOC_ERROR "Error while performing malloc"
+# define PARSE_ERROR "Error while parsing. Verify the scene configuration"
+# define ELMNT_ARGS_ERROR "Unexpected number of arguments on element"
+# define ELMNT_SUBARGS_ERROR "Unexpected number of arguments on color or 3d vec"
+# define NOT_UNIT_VECTOR "Vector should be unit vector (normalized)"
+# define NO_NUMBER "There is no digit in the number to be parsed"
+# define UNEXPECTED_NUM "Unexpected number: is not between limits\
+ or contains unexpected chars"
+# define INVALID_ID "Invalid element ID"
 //     CONSTANTS
 # define RTFILE_EXT ".rt"
 # define RTFILE_EXT_LEN 3
 # define WINDOW_TITLE "miniRT"
 # define CLOSE_WINDOW 17
+# define INT_MAX_LEN 10 // 2147483647
+# define INT_MIN_ACCEPTED INT_MIN
+# define INT_MAX_ACCEPTED INT_MAX
+# define DECIMAL_MIN_ACCEPTED -__DBL_MAX__
+# define DECIMAL_MIN_POSITIVE_ACCEPTED 0
+# define DECIMAL_MAX_ACCEPTED __DBL_MAX__
+# define DECIMAL_MAX_LEN 2
+# define EPSILON 1e-6
 
 // ### STRUCTS ###
 /**
@@ -56,35 +86,35 @@
  */
 typedef struct s_color
 {
-	int	r;
-	int	g;
-	int	b;
+	int	r; // [0,255]
+	int	g; // [0,255]
+	int	b; // [0,255]
 }	t_color;
 
 typedef struct s_3dvector
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_3dvector;
 
 typedef struct s_ambient_light
 {
-	float	ratio;
+	double	ratio; // [0,1]
 	t_color	rgb;
 }	t_ambient_light;
 
 typedef struct s_camera
 {
-	t_3dvector	pos;
-	t_3dvector	dir;
-	int			fov;
+	t_3dvector	pos; // [N]
+	t_3dvector	dir; // [-1,1] normalized
+	int			fov; // [0,180]
 }	t_camera;
 
 typedef struct s_light
 {
-	t_3dvector	pos;
-	float		ratio;
+	t_3dvector	pos; // [N]
+	double		ratio; // [0,1]
 	t_color		rgb;
 }	t_light;
 
@@ -104,24 +134,24 @@ typedef struct s_list
 
 typedef struct s_sphere
 {
-	t_3dvector	pos;
-	float		diameter;
+	t_3dvector	pos; // [N]
+	double		diameter; // [N]
 	t_color		rgb;
 }	t_sphere;
 
 typedef struct s_plane
 {
-	t_3dvector	pos;
-	t_3dvector	dir;
+	t_3dvector	pos; // [N]
+	t_3dvector	dir; // [-1,1] normalized
 	t_color		rgb;
 }	t_plane;
 
 typedef struct s_cylinder
 {
-	t_3dvector	pos;
-	t_3dvector	dir;
-	float		diameter;
-	float		height;
+	t_3dvector	pos; // [N]
+	t_3dvector	dir; // [-1,1] normalized
+	double		diameter; // [N]
+	double		height; // [N]
 	t_color		rgb;
 }	t_cylinder;
 
@@ -140,20 +170,42 @@ typedef struct s_miniRT
 	t_light			light;
 	t_mlxinfo		mlxinfo;
 	t_list			*scene;
+	bool			has_ambient_light;
+	bool			has_camera;
+	bool			has_light;
 }	t_miniRT;
 
 // ### OPERATIONS ###
 t_3dvector	vector_sum(t_3dvector a, t_3dvector b);
 t_3dvector	vector_sub(t_3dvector a, t_3dvector b);
-t_3dvector	vector_scale(t_3dvector a, float k);
-float		vector_length(t_3dvector a);
+t_3dvector	vector_scale(t_3dvector a, double k);
+double		vector_length(t_3dvector a);
 t_3dvector	vector_normalize(t_3dvector a);
-float		vec_dot(t_3dvector a, t_3dvector b);
+double		vec_dot(t_3dvector a, t_3dvector b);
 t_3dvector	vec_cross(t_3dvector a, t_3dvector b);
-float		vec_distance(t_3dvector a, t_3dvector b);
+double		vec_distance(t_3dvector a, t_3dvector b);
+bool		is_unit_vector(t_3dvector a);
 
 // ### FUNCTIONS ###
 void		error_exit(t_miniRT *rt, char *msg);
+void		free_rt(t_miniRT *rt);
+
+//     parse
+void		parse(t_miniRT *rt, char *filename);
+void		create_ambient_light(t_miniRT *rt, char **params, bool *err);
+void		create_camera(t_miniRT *rt, char **params, bool *err);
+void		create_light(t_miniRT *rt, char **params, bool *err);
+void		create_sphere(t_miniRT *rt, char **params, bool *err);
+void		create_plane(t_miniRT *rt, char **params, bool *err);
+void		create_cylinder(t_miniRT *rt, char **params, bool *err);
+
+//     parse utils
+t_color		parse_color(char *input, bool *err);
+t_3dvector	parse_3dvector(char *input, bool normalized, bool *err);
+int			atoi_err(char *str, bool *err, int min, int max);
+double		atod_err(char *str, bool *err, double min, double max);
+bool		check_n_params(char **params, int expected, bool *err);
+void		print_and_put_error(char *msg, bool *err);
 
 //     lists utils
 void		ft_lstadd_back(t_list **lst, t_list *new);

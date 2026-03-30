@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2025/12/23 14:03:19 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/30 12:58:30 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 static bool	file_has_rt_extension(char *filename);
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_miniRT	rt;
-	(void) rt;
 
+	rt.scene = NULL;
+	rt.has_ambient_light = false;
+	rt.has_camera = false;
+	rt.has_light = false;
 	if (argc != 2 || !file_has_rt_extension(argv[1]))
 		error_exit(NULL, WRONG_NUMBER_ARGS);
+	parse(&rt, argv[1]);
+	if (!rt.has_camera || !rt.has_light || !rt.has_ambient_light)
+		error_exit(&rt, MISSING_ELEMENT);
+	// TODO @rub paint scene
+	free_rt(&rt);
 	return (EXIT_SUCCESS);
 }
 
@@ -45,7 +53,18 @@ static bool	file_has_rt_extension(char *filename)
 void	error_exit(t_miniRT *rt, char *msg)
 {
 	printf("Error\n%s\n", msg);
-	// free miniRT
-	(void) rt;
+	get_next_line(-1);
+	free_rt(rt);
 	exit(EXIT_FAILURE);
+}
+
+/**
+ * @brief frees all the miniRT allocated resources (scene & mlxinfo)
+ */
+void	free_rt(t_miniRT *rt)
+{
+	if (!rt)
+		return ;
+	ft_lstclear(&(rt->scene), free);
+	// TODO @rub free t_mlxinfo
 }

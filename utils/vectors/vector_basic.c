@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vector_basic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 20:45:32 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/13 20:13:08 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/02/26 16:38:39 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../../miniRT.h"
 
 /**
  * @brief calculates the sum of two vectors
@@ -34,7 +34,7 @@ t_3dvector	vector_sub(t_3dvector a, t_3dvector b)
  * @brief scales a vector with a factor k (can be used to multiply or divide)
  * @return scaled vector
  */
-t_3dvector	vector_scale(t_3dvector a, float k)
+t_3dvector	vector_scale(t_3dvector a, double k)
 {
 	return ((t_3dvector){a.x * k, a.y * k, a.z * k});
 }
@@ -43,7 +43,7 @@ t_3dvector	vector_scale(t_3dvector a, float k)
  * @brief calculates a vector length
  * @returns vector length
  */
-float	vector_length(t_3dvector a)
+double	vector_length(t_3dvector a)
 {
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
@@ -54,10 +54,10 @@ float	vector_length(t_3dvector a)
  */
 t_3dvector	vector_normalize(t_3dvector a)
 {
-	float	len;
+	double	len;
 
 	len = vector_length(a);
-	if (len == 0.0f)
+	if (len == 0.0)
 		return (a);
-	return (vector_scale(a, 1.0f / len));
+	return (vector_scale(a, 1.0 / len));
 }
