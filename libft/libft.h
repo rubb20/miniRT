@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:48:03 by isastre-          #+#    #+#             */
-/*   Updated: 2025/12/01 17:57:24 by isastre-         ###   ########.fr       */
+/*   Updated: 2025/12/01 19:23:01 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void			*ft_memset(void *dest, int c, size_t count);
 
 // string
 bool			ft_equals(char *s1, char *s2);
+bool			ft_is_empty(char *string);
 char			*ft_joinstrs(char const **strs);
 char			**ft_split(char const *s, char c);
 int				ft_str_array_len(char **strs);

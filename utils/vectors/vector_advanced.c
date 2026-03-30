@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   vector_advanced.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 21:01:26 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/01/17 21:11:37 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/02/26 16:38:42 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../miniRT.h"
+#include "../../miniRT.h"
 
 /**
  * @brief calculates dot product
  * @return value of dot product
  */
-float	vec_dot(t_3dvector a, t_3dvector b)
+double	vec_dot(t_3dvector a, t_3dvector b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
@@ -38,7 +38,19 @@ t_3dvector	vec_cross(t_3dvector a, t_3dvector b)
 /**
  * @brief calculates the distance between two vectors
  */
-float	vec_distance(t_3dvector a, t_3dvector b)
+double	vec_distance(t_3dvector a, t_3dvector b)
 {
 	return (vector_length(vector_sub(a, b)));
+}
+
+/**
+ * @brief says if a vector is unitary (is normalized)
+ * @note this function tolerates a deviation lower than epsilon (bc of mantissa)
+ */
+bool	is_unit_vector(t_3dvector a)
+{
+	double	len;
+
+	len = vector_length(a);
+	return (fabs(len - 1.0) < EPSILON);
 }
