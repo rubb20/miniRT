@@ -6,11 +6,13 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 21:00:55 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/30 16:39:53 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 18:54:38 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
+
+static t_3dvector	calculate_cap(t_cylinder *cyl, int i);
 
 static float	check_h(t_ray *ray, t_cylinder *cyl, float t)
 {
@@ -23,7 +25,7 @@ static float	check_h(t_ray *ray, t_cylinder *cyl, float t)
 	hit = vector_sum(ray->origin, vector_scale(ray->dir, t));
 	oc = vector_sub(hit, cyl->pos);
 	m = vec_dot(oc, cyl->dir);
-	if (m >= 0 && m <= cyl->height)
+	if (fabs(m) <= cyl->height / 2)
 		return (t);
 	return (INFINITY);
 }
@@ -65,7 +67,7 @@ static float	get_cap_t(t_ray *ray, t_cylinder *cyl)
 	res = INFINITY;
 	while (i < 2)
 	{
-		c_pos = vector_sum(cyl->pos, vector_scale(cyl->dir, i * cyl->height));
+		c_pos = calculate_cap(cyl, i);
 		t_cap = vec_dot(vector_sub(c_pos, ray->origin), cyl->dir)
 			/ vec_dot(ray->dir, cyl->dir);
 		if (t_cap > 0)
@@ -89,4 +91,18 @@ bool	intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, float *t)
 	t_cap = get_cap_t(ray, cyl);
 	*t = fminf(t_surf, t_cap);
 	return (*t > 0 && *t < INFINITY);
+}
+
+static t_3dvector	calculate_cap(t_cylinder *cyl, int i)
+{
+	t_3dvector	cap_pos;
+	float		offset;
+
+	if (i == 0)
+		offset = -cyl->height / 2;
+	else
+		offset = cyl->height / 2;
+
+	cap_pos = vector_sum(cyl->pos, vector_scale(cyl->dir, offset));
+	return (cap_pos);
 }

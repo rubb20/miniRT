@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 18:25:13 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/02/26 20:26:55 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 15:36:51 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,4 @@ t_color	apply_light(t_color obj, float intensity, t_color light_color)
 	diffuse.g = obj.g * intensity * (light_color.g / 255.0f);
 	diffuse.b = obj.b * intensity * (light_color.b / 255.0f);
 	return (diffuse);
-}
-
-float	closest_object(float t1, float t2)
-{
-	if (t1 > 0 && t2 > 0)
-		return (fminf(t1, t2));
-	else if (t1 > 0)
-		return (t1);
-	else if (t2 > 0)
-		return (t2);
-	return (-1.0f);
 }

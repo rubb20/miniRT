@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 14:26:25 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 17:55:37 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ void		print_and_put_error(char *msg, bool *err);
 
 //     lists utils
 void		ft_lstadd_back(t_list **lst, t_list *new);
+t_list		*ft_lstat(t_list *lst, int index);
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstdelone(t_list *lst, void (*del)(void *));
 t_list		*ft_lstlast(t_list *lst);
@@ -223,7 +224,7 @@ t_list		*ft_lstnew(t_id id, void *obj);
 
 //     window management
 void		create_window(t_miniRT *scene);
-void		manage_hooks(t_mlxinfo *window);
+void		manage_hooks(t_miniRT *miniRT);
 
 //     render
 void		render(t_miniRT *scene);
@@ -236,5 +237,14 @@ t_color		fminf_color(t_color color1, t_color color2, int max);
 t_color		apply_light(t_color obj, float intensity, t_color light_color);
 t_3dvector	get_normal(t_list *hit, t_3dvector hit_point);
 bool		intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, float *t);
+
+//modify
+bool		modify_object(t_miniRT *miniRT, int index);
+bool		modify_params(t_3dvector *pos, t_3dvector *rot);
+int			print_all_scene(t_miniRT *miniRT);
+char		*get_name(t_list *lst);
+t_3dvector	*get_pos(t_list *lst);
+t_3dvector	*get_rot(t_list *lst);
+t_3dvector	rotate(t_3dvector origin, t_3dvector rot);
 
 #endif

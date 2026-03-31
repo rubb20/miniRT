@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 21:22:25 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 14:24:58 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:29:45 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	render(t_miniRT *scene)
 	}
 	mlx_put_image_to_window(scene->mlxinfo.mlx,
 		scene->mlxinfo.win, scene->frame, 0, 0);
+	printf("ACABADO\n");
 }
 
 static t_color	ambient_color(t_miniRT *scene, t_color obj)
