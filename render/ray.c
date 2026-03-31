@@ -6,13 +6,13 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 19:43:21 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/11 21:02:25 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:22:25 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-t_3dvector	calculate_ray_direction(int x, int y, t_miniRT *scene);
+static t_3dvector	calculate_ray_direction(int x, int y, t_miniRT *scene);
 
 /**
  * @brief creates a ray for the raytracer. A ray has a general ecuation: O+tD
@@ -35,7 +35,7 @@ t_ray	create_ray(int x, int y, t_miniRT *scene)
 	return (ray);
 }
 
-t_3dvector	calculate_ray_direction(int x, int y, t_miniRT *scene)
+static t_3dvector	calculate_ray_direction(int x, int y, t_miniRT *scene)
 {
 	float		u;
 	float		v;

@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 21:22:25 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/30 12:42:21 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:24:58 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static t_color	ambient_color(t_miniRT *scene, t_color obj)
 
 /**
  * 
- * Formula de Phong para el calculo de iluminacion en un punto:
- * luz difusa + luz ambiental.
- * luz difusa: kd * lightColor * max(0,N*L) siendo N la normal,
- * L el vector desde el punto a la luz.
- * luz ambiental: ka * ambientColor.
- * kd y ka son factores de luz del objeto (el color del objeto).
+ * Phong formula for ilumination calculation in a point:
+ * diffuse + ambiental (+ especular in bonus)
+ * diffuse = kd * lightColor * max(0,N*L), N as normal,
+ * L as vector from point to Light.
+ * ambiental = ka * ambientColor
+ * kd and ka are objects light factors (color of the object)
  */
 static int	render_pixel(t_ray ray, t_miniRT *scene)
 {

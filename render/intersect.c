@@ -6,17 +6,16 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 20:42:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/24 20:52:37 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:26:36 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRT.h"
 
-bool	intersect_ray_sphere(t_ray *ray, t_sphere *sphere, float *t);
-bool	intersect_ray_plane(t_ray *ray, t_plane *plane, float *t);
-bool	intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, float *t);
-
-bool	intersect_object(t_ray *ray, t_list *node, float *t1);
+static bool		intersect_ray_sphere(t_ray *ray, t_sphere *sphere, float *t);
+static bool		intersect_ray_plane(t_ray *ray, t_plane *plane, float *t);
+static bool		intersect_object(t_ray *ray, t_list *node, float *t1);
+static float	closest_object(float t1, float t2);
 
 /**
  * @brief this functions checks if a ray intersects with any object
@@ -58,7 +57,7 @@ float	intersect(t_ray ray, t_list *scene, t_list **obj)
  * @param t1 if it intersects with the object (return true), this float will
  *      hold the t-value.
  */
-bool	intersect_object(t_ray *ray, t_list *node, float *t1)
+static bool	intersect_object(t_ray *ray, t_list *node, float *t1)
 {
 	if (node->id == SPHERE && intersect_ray_sphere(ray,
 			(t_sphere *)node->obj, t1))
@@ -80,7 +79,7 @@ bool	intersect_object(t_ray *ray, t_list *node, float *t1)
  * @param t if it intersects with the object (return true), this float will
  *      hold the t-value.
  */
-bool	intersect_ray_sphere(t_ray *ray, t_sphere *sphere, float *t)
+static bool	intersect_ray_sphere(t_ray *ray, t_sphere *sphere, float *t)
 {
 	t_3dvector	oc;
 	float		a;
@@ -103,14 +102,14 @@ bool	intersect_ray_sphere(t_ray *ray, t_sphere *sphere, float *t)
 	return (true);
 }
 
-bool	intersect_ray_plane(t_ray *ray, t_plane *plane, float *t)
+static bool	intersect_ray_plane(t_ray *ray, t_plane *plane, float *t)
 {
 	t_3dvector	p0l0;
 	float		denominator;
 	float		result;
 
 	denominator = vec_dot(plane->dir, ray->dir);
-	if (fabs(denominator) < 1e-6)
+	if (fabs(denominator) < EPSILON)
 		return (false);
 	p0l0 = vector_sub(plane->pos, ray->origin);
 	result = vec_dot(p0l0, plane->dir) / denominator;
@@ -118,4 +117,15 @@ bool	intersect_ray_plane(t_ray *ray, t_plane *plane, float *t)
 		return (false);
 	*t = result;
 	return (true);
+}
+
+static float	closest_object(float t1, float t2)
+{
+	if (t1 > 0 && t2 > 0)
+		return (fminf(t1, t2));
+	else if (t1 > 0)
+		return (t1);
+	else if (t2 > 0)
+		return (t2);
+	return (-1.0f);
 }
