@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/30 16:43:19 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 21:49:11 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,4 @@ void	free_rt(t_miniRT *rt)
 	if (!rt)
 		return ;
 	ft_lstclear(&(rt->scene), free);
-	// TODO @rub free t_mlxinfo
 }

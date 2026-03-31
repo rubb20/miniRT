@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 21:00:55 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 20:55:24 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 21:46:03 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ static t_3dvector	calculate_cap(t_cylinder *cyl, int i)
 		offset = -cyl->height / 2;
 	else
 		offset = cyl->height / 2;
-
 	cap_pos = vector_sum(cyl->pos, vector_scale(cyl->dir, offset));
 	return (cap_pos);
 }
