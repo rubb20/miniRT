@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:20:03 by isastre-          #+#    #+#             */
-/*   Updated: 2026/03/30 12:58:30 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/30 16:43:19 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 	parse(&rt, argv[1]);
 	if (!rt.has_camera || !rt.has_light || !rt.has_ambient_light)
 		error_exit(&rt, MISSING_ELEMENT);
-	// TODO @rub paint scene
+	create_window(&rt);
 	free_rt(&rt);
 	return (EXIT_SUCCESS);
 }

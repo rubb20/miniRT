@@ -19,6 +19,12 @@ SRC	= 	\
 		utils/vectors/vector_advanced.c \
 		window/hooks.c \
 		window/window.c \
+		render/render.c \
+		render/ray.c \
+		render/intersect.c \
+		render/intersect_cylinder.c \
+		render/utils_render.c \
+		render/normal.c
 
 OBJ_DIR = objects
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))

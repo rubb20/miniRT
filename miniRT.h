@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/24 19:42:31 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:26:25 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,12 +163,19 @@ typedef struct s_mlxinfo
 	int		width;
 }	t_mlxinfo;
 
+typedef struct s_ray
+{
+	t_3dvector	origin;
+	t_3dvector	dir;
+}	t_ray;
+
 typedef struct s_miniRT
 {
 	t_ambient_light	ambient_light;
 	t_camera		camera;
 	t_light			light;
 	t_mlxinfo		mlxinfo;
+	t_img			*frame;
 	t_list			*scene;
 	bool			has_ambient_light;
 	bool			has_camera;
@@ -215,7 +222,19 @@ t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(t_id id, void *obj);
 
 //     window management
-void		create_window(t_miniRT scene);
+void		create_window(t_miniRT *scene);
 void		manage_hooks(t_mlxinfo *window);
+
+//     render
+void		render(t_miniRT *scene);
+t_ray		create_ray(int x, int y, t_miniRT *scene);
+float		intersect(t_ray ray, t_list *scene, t_list **obj);
+t_color		get_color(t_list lst);
+int			color_to_int(t_color c);
+t_color		color_sum(t_color a, t_color b);
+t_color		fminf_color(t_color color1, t_color color2, int max);
+t_color		apply_light(t_color obj, float intensity, t_color light_color);
+t_3dvector	get_normal(t_list *hit, t_3dvector hit_point);
+bool		intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, float *t);
 
 #endif
