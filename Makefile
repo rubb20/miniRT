@@ -11,14 +11,18 @@ SRC	= 	\
 		utils/structs/commons.c \
 		utils/structs/parse_numbers.c \
 		utils/lists/ft_lstadd_back.c \
+		utils/lists/ft_lstat.c \
 		utils/lists/ft_lstclear.c \
 		utils/lists/ft_lstdelone.c \
 		utils/lists/ft_lstlast.c \
 		utils/lists/ft_lstnew.c \
 		utils/vectors/vector_basic.c \
 		utils/vectors/vector_advanced.c \
+		utils/utils_modify.c \
 		window/hooks.c \
 		window/window.c \
+		render/transformation/modify_objects.c \
+		render/transformation/rotate_vector.c \
 		render/render.c \
 		render/ray.c \
 		render/intersect.c \

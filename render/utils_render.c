@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 18:25:13 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 17:41:17 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/31 20:55:52 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,4 @@ t_color	apply_light(t_color obj, double intensity, t_color light_color)
 	diffuse.g = obj.g * intensity * (light_color.g / 255.0);
 	diffuse.b = obj.b * intensity * (light_color.b / 255.0);
 	return (diffuse);
-}
-
-double	closest_object(double t1, double t2)
-{
-	if (t1 > 0 && t2 > 0)
-		return (fmin(t1, t2));
-	else if (t1 > 0)
-		return (t1);
-	else if (t2 > 0)
-		return (t2);
-	return (-1.0);
 }
