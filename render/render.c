@@ -6,7 +6,7 @@
 /*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 21:22:25 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 17:56:27 by isastre-         ###   ########.fr       */
+/*   Updated: 2026/03/31 18:52:23 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	render_pixel(t_ray ray, t_miniRT *scene)
 			vector_normalize(light_dir)}, scene->scene, NULL);
 	if (t > 0.0 && t < vector_length(light_dir))
 		return (color_to_int(ambient_color(scene, get_color(*hit))));
-	diffuse = fmaxf(vec_dot(get_normal(hit, hit_point),
+	diffuse = fmax(vec_dot(get_normal(hit, hit_point),
 				vector_normalize(light_dir)), 0.0) * scene->light.ratio;
 	return (color_to_int(fminf_color(apply_light(
 					get_color(*hit), diffuse, scene->light.rgb),
