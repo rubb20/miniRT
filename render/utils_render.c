@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 18:25:13 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 15:36:51 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 20:55:52 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ t_color	fminf_color(t_color color1, t_color color2, int max)
 {
 	t_color	result;
 
-	result.r = fminf(color1.r + color2.r, max);
-	result.g = fminf(color1.g + color2.g, max);
-	result.b = fminf(color1.b + color2.b, max);
+	result.r = fmin(color1.r + color2.r, max);
+	result.g = fmin(color1.g + color2.g, max);
+	result.b = fmin(color1.b + color2.b, max);
 	return (result);
 }
 
-t_color	apply_light(t_color obj, float intensity, t_color light_color)
+t_color	apply_light(t_color obj, double intensity, t_color light_color)
 {
 	t_color	diffuse;
 
-	diffuse.r = obj.r * intensity * (light_color.r / 255.0f);
-	diffuse.g = obj.g * intensity * (light_color.g / 255.0f);
-	diffuse.b = obj.b * intensity * (light_color.b / 255.0f);
+	diffuse.r = obj.r * intensity * (light_color.r / 255.0);
+	diffuse.g = obj.g * intensity * (light_color.g / 255.0);
+	diffuse.b = obj.b * intensity * (light_color.b / 255.0);
 	return (diffuse);
 }

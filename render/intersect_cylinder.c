@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 21:00:55 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 18:54:38 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 20:55:24 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static t_3dvector	calculate_cap(t_cylinder *cyl, int i);
 
-static float	check_h(t_ray *ray, t_cylinder *cyl, float t)
+static double	check_h(t_ray *ray, t_cylinder *cyl, double t)
 {
 	t_3dvector	hit;
 	t_3dvector	oc;
-	float		m;
+	double		m;
 
 	if (t <= 0)
 		return (INFINITY);
@@ -30,12 +30,12 @@ static float	check_h(t_ray *ray, t_cylinder *cyl, float t)
 	return (INFINITY);
 }
 
-static float	get_surface_t(t_ray *ray, t_cylinder *cyl)
+static double	get_surface_t(t_ray *ray, t_cylinder *cyl)
 {
 	t_3dvector	proj[2];
-	float		abc[3];
-	float		t[2];
-	float		disc;
+	double		abc[3];
+	double		t[2];
+	double		disc;
 
 	proj[0] = vector_sub(ray->dir,
 			vector_scale(cyl->dir, vec_dot(ray->dir, cyl->dir)));
@@ -48,17 +48,17 @@ static float	get_surface_t(t_ray *ray, t_cylinder *cyl)
 	disc = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (disc < 0)
 		return (INFINITY);
-	t[0] = (-abc[1] - sqrtf(disc)) / (2 * abc[0]);
-	t[1] = (-abc[1] + sqrtf(disc)) / (2 * abc[0]);
+	t[0] = (-abc[1] - sqrt(disc)) / (2 * abc[0]);
+	t[1] = (-abc[1] + sqrt(disc)) / (2 * abc[0]);
 	t[0] = check_h(ray, cyl, t[0]);
 	t[1] = check_h(ray, cyl, t[1]);
-	return (fminf(t[0], t[1]));
+	return (fmin(t[0], t[1]));
 }
 
-static float	get_cap_t(t_ray *ray, t_cylinder *cyl)
+static double	get_cap_t(t_ray *ray, t_cylinder *cyl)
 {
-	float		t_cap;
-	float		res;
+	double		t_cap;
+	double		res;
 	t_3dvector	p;
 	t_3dvector	c_pos;
 	int			i;
@@ -75,21 +75,21 @@ static float	get_cap_t(t_ray *ray, t_cylinder *cyl)
 			p = vector_sub(vector_sum(ray->origin,
 						vector_scale(ray->dir, t_cap)), c_pos);
 			if (vec_dot(p, p) <= pow(cyl->diameter / 2, 2))
-				res = fminf(res, t_cap);
+				res = fmin(res, t_cap);
 		}
 		i++;
 	}
 	return (res);
 }
 
-bool	intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, float *t)
+bool	intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, double *t)
 {
-	float		t_surf;
-	float		t_cap;
+	double		t_surf;
+	double		t_cap;
 
 	t_surf = get_surface_t(ray, cyl);
 	t_cap = get_cap_t(ray, cyl);
-	*t = fminf(t_surf, t_cap);
+	*t = fmin(t_surf, t_cap);
 	return (*t > 0 && *t < INFINITY);
 }
 

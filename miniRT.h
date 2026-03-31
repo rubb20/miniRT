@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 14:33:54 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 17:55:37 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 20:53:40 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,14 +229,14 @@ void		manage_hooks(t_miniRT *miniRT);
 //     render
 void		render(t_miniRT *scene);
 t_ray		create_ray(int x, int y, t_miniRT *scene);
-float		intersect(t_ray ray, t_list *scene, t_list **obj);
+double		intersect(t_ray ray, t_list *scene, t_list **obj);
 t_color		get_color(t_list lst);
 int			color_to_int(t_color c);
 t_color		color_sum(t_color a, t_color b);
 t_color		fminf_color(t_color color1, t_color color2, int max);
-t_color		apply_light(t_color obj, float intensity, t_color light_color);
+t_color		apply_light(t_color obj, double intensity, t_color light_color);
 t_3dvector	get_normal(t_list *hit, t_3dvector hit_point);
-bool		intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, float *t);
+bool		intersect_ray_cylinder(t_ray *ray, t_cylinder *cyl, double *t);
 
 //modify
 bool		modify_object(t_miniRT *miniRT, int index);

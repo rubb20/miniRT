@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 19:43:21 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 14:22:25 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 18:48:03 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ t_ray	create_ray(int x, int y, t_miniRT *scene)
 
 static t_3dvector	calculate_ray_direction(int x, int y, t_miniRT *scene)
 {
-	float		u;
-	float		v;
-	float		w;
-	float		h;
+	double		u;
+	double		v;
+	double		w;
+	double		h;
 	t_3dvector	right;
 
-	u = ((float)x / (float)scene->mlxinfo.width) - 0.5f;
-	v = 0.5f - ((float)y / (float)scene->mlxinfo.height);
-	w = 2.0f * tanf((scene->camera.fov * M_PI / 180.0f) / 2.0f);
-	h = w / ((float)scene->mlxinfo.width / (float)scene->mlxinfo.height);
+	u = ((double)x / (double)scene->mlxinfo.width) - 0.5;
+	v = 0.5 - ((double)y / (double)scene->mlxinfo.height);
+	w = 2.0 * tan((scene->camera.fov * M_PI / 180.0) / 2.0);
+	h = w / ((double)scene->mlxinfo.width / (double)scene->mlxinfo.height);
 	right = vector_normalize(vec_cross(scene->camera.dir,
-				(t_3dvector){0.0f, 1.0f, 0.0f}));
+				(t_3dvector){0.0, 1.0, 0.0}));
 	return (vector_normalize(vector_sum(scene->camera.dir,
 				vector_sum(vector_scale(right, u * w), vector_scale(
 						vec_cross(right, scene->camera.dir), v * h)))));
