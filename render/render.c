@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: isastre- <isastre-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 21:22:25 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 14:24:58 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 17:56:27 by isastre-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static t_color	ambient_color(t_miniRT *scene, t_color obj)
 	t_color	a;
 
 	a.r = obj.r * scene->ambient_light.ratio
-		* (scene->ambient_light.rgb.r / 255.0f);
+		* (scene->ambient_light.rgb.r / 255.0);
 	a.g = obj.g * scene->ambient_light.ratio
-		* (scene->ambient_light.rgb.g / 255.0f);
+		* (scene->ambient_light.rgb.g / 255.0);
 	a.b = obj.b * scene->ambient_light.ratio
-		* (scene->ambient_light.rgb.b / 255.0f);
+		* (scene->ambient_light.rgb.b / 255.0);
 	return (a);
 }
 
@@ -64,23 +64,23 @@ static t_color	ambient_color(t_miniRT *scene, t_color obj)
 static int	render_pixel(t_ray ray, t_miniRT *scene)
 {
 	t_list		*hit;
-	float		t;
+	double		t;
 	t_3dvector	hit_point;
 	t_3dvector	light_dir;
-	float		diffuse;
+	double		diffuse;
 
 	t = intersect(ray, scene->scene, &hit);
-	if (t < 0.0f)
+	if (t < 0.0)
 		return (0);
 	hit_point = vector_sum(ray.origin, vector_scale(ray.dir, t));
 	light_dir = vector_sub(scene->light.pos, hit_point);
 	t = intersect((t_ray){vector_sum(hit_point, vector_scale(
-					get_normal(hit, hit_point), 1e-4f)),
+					get_normal(hit, hit_point), 1e-4)),
 			vector_normalize(light_dir)}, scene->scene, NULL);
-	if (t > 0.0f && t < vector_length(light_dir))
+	if (t > 0.0 && t < vector_length(light_dir))
 		return (color_to_int(ambient_color(scene, get_color(*hit))));
 	diffuse = fmaxf(vec_dot(get_normal(hit, hit_point),
-				vector_normalize(light_dir)), 0.0f) * scene->light.ratio;
+				vector_normalize(light_dir)), 0.0) * scene->light.ratio;
 	return (color_to_int(fminf_color(apply_light(
 					get_color(*hit), diffuse, scene->light.rgb),
 				ambient_color(scene, get_color(*hit)), 255)));
