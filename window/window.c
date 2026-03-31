@@ -6,7 +6,7 @@
 /*   By: ralba-ji <ralba-ji@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:56:15 by ralba-ji          #+#    #+#             */
-/*   Updated: 2026/03/31 15:36:56 by ralba-ji         ###   ########.fr       */
+/*   Updated: 2026/03/31 21:19:50 by ralba-ji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ void	create_window(t_miniRT *scene)
 	if (window.mlx == NULL)
 		error_exit(scene, FAIL_MLX_INIT);
 	mlx_get_screen_size(window.mlx, &window.width, &window.height);
-	window.win = mlx_new_window(window.mlx, window.width - 500,
-			window.height - 500, WINDOW_TITLE);
+	window.height -= 500;
+	window.width -= 500;
+	window.win = mlx_new_window(window.mlx, window.width,
+			window.height, WINDOW_TITLE);
 	if (window.win == NULL)
 	{
 		destroy_window(&window);
